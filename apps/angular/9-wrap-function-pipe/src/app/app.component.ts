@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
+import { WrapPipe } from './wrap.pipe';
 
 @Component({
   selector: 'app-root',
+  imports: [WrapPipe],
   template: `
     @for (person of persons; track person.name) {
-      {{ showName(person.name, $index) }}
-      {{ isAllowed(person.age, $first) }}
+      {{ showName | wrap: person.name : $index }}
+      {{ isAllowed | wrap: person.age : $first }}
     }
   `,
 })
